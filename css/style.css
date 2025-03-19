@@ -113,7 +113,7 @@ img {
 }
 
 .shadow {
-  box-shadow: 0 0 10px 0 var(--rtc-shadow-color);
+  box-shadow: 2px 2px 5px var(--rtc-shadow-color);
 }
 
 /*? ------------ NAV ------------ */
@@ -159,6 +159,7 @@ body > header{
   cursor: pointer;
 }
 
+
 .nav-bar button{
   all: unset;
   cursor: pointer;
@@ -202,7 +203,7 @@ body > header{
 
 /*? ------------ HERO ------------ */
 section.hero {
-  background-image: url("assets/img/hero.png");
+  background-image: url("/assets/img/hero.png");
   max-height: 196px;
 }
 
@@ -439,6 +440,51 @@ article .agregar:hover{
   text-align: center;
   border-radius: 50%;
 }
+
+.mensaje-sin-resultados {
+  width: 100%;
+  text-align: center;
+  color: red;
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.mensaje-sin-resultados h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff3333;
+}
+
+.mensaje-sin-resultados p {
+  font-size: 16px;
+  color: #555;
+}
+
+.separador {
+  border: none;
+  height: 2px;
+  background-color: #ff3333;
+  width: 50%;
+  margin: 10px auto;
+}
+
+.sugerencias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.sugerencias article {
+  border: 2px solid #ffcc00;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: white;
+}
+
 
 /*? ------------ FOOTER ------------ */
 footer {

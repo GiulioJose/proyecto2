@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="assets/favicoin/zapatos.png" type="image/x-icon">
   <meta name="description" content="Descubre las mejores zapatillas deportivas para running, gimnasio y estilo urbano">
   <title>JD Sport's</title>
-  <script src="articulos.js" defer></script>
-  <script src="filtros.js" defer></script>
-  <script src="main.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/zapatillas.js" defer></script>
+  <script src="js/articulos.js" defer></script>
+  <script src="js/filtros.js" defer></script>  
 </head>
 <body>
   <header class="flex-row">
@@ -136,23 +137,9 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <section class="hero img-background">
-      <h1 class="sr-only">Encuentra las Mejores Zapatillas Deportivas en JD Sports</h1>
-    </section>
-    <aside class="filtros cerrado">
-      <form class="filtros-form">
-      <!-- Aquí se generarán los filtros con JavaScript -->
-      </form>
-      <button class="pestana" aria-label="Abrir o cerrar filtros">
-        <img src="assets/img/arrow.png" alt="Mostrar/Ocultar filtros">
-      </button>
-    </aside>
-    <section id="articulos" class="flex-row">
-      <h2 class="sr-only">Nuestras mejores zapatillas para ti</h2>
-      <!-- Espacio para los artículos -->
-    </section>
-  </main>
+  <div id="app">
+    <!-- Aqui sucede la magia de javascript -->
+  </div>
   <footer class="flex-row">
     <ul>
       <li>Compra con JD</li>

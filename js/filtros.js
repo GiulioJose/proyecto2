@@ -3,12 +3,13 @@ function crearFiltro(nombre, opciones) {
   filtroContainer.classList.add(`filtro-${nombre}`);
 
   const label = document.createElement("label");
-  label.textContent = nombre.charAt(0).toUpperCase() + nombre.slice(1) + ":";
+  label.textContent = nombre.replace(/\b\w/g, c => c.toUpperCase()) + ":";
   label.setAttribute("for", nombre);
 
   const select = document.createElement("select");
   select.id = nombre;
-  
+  select.dataset.filtro = nombre;
+
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
   defaultOption.textContent = "------";
@@ -27,7 +28,7 @@ function crearFiltro(nombre, opciones) {
   select.addEventListener("change", aplicarFiltros);
 }
 
-function aplicarFiltros() {
+function filtrarZapatillas() {
   const marcaSeleccionada = document.getElementById("marca").value.toLowerCase();
   const modeloSeleccionado = document.getElementById("modelo").value.toLowerCase();
   const colorSeleccionado = document.getElementById("color").value.toLowerCase();
@@ -35,7 +36,7 @@ function aplicarFiltros() {
   const generoSeleccionado = document.getElementById("genero")?.value?.toLowerCase() || "";
   const valoracionSeleccionada = document.getElementById("valoracion")?.value || "";
 
-  let resultados = zapatillas.filter(zapatilla => {
+  return zapatillas.filter(zapatilla => {
     return (
       (valoracionSeleccionada === "" ||
        (valoracionSeleccionada === "5" && zapatilla.valoracion === 5) ||
@@ -49,21 +50,39 @@ function aplicarFiltros() {
       (generoSeleccionado === "" || ["unisex", generoSeleccionado].includes(String(zapatilla.genero).toLowerCase()))
     );
   });
+}
 
+function mostrarResultados(resultados) {
   const contenedorArticulos = document.getElementById("articulos");
   contenedorArticulos.innerHTML = "";
 
   if (resultados.length === 0) {
-    const mensaje = document.createElement("p");
-    mensaje.textContent = "Lo sentimos, no hay coincidencias en tu búsqueda. Tal vez estos modelos puedan agradarte.";
+    const mensaje = document.createElement("div");
+    mensaje.className = "mensaje-sin-resultados";
+    mensaje.innerHTML = `
+      <h2>No encontramos resultados 😞</h2>
+      <p>Pero quizás te gusten algunos de estos modelos:</p>
+      <hr class="separador">
+    `;
     contenedorArticulos.appendChild(mensaje);
-
-    // Selecciona 3 zapatillas al azar de la lista completa
+  
+    // Sección de sugerencias
     const sugerencias = [...zapatillas].sort(() => Math.random() - 0.5).slice(0, 3);
-    renderItems(sugerencias);
+  
+    const contenedorSugerencias = document.createElement("div");
+    contenedorSugerencias.className = "sugerencias";
+    renderItems(sugerencias, contenedorSugerencias);
+    contenedorArticulos.appendChild(contenedorSugerencias);
   } else {
     renderItems(resultados);
   }
+  
+  
+}
+
+function aplicarFiltros() {
+  const resultados = filtrarZapatillas();
+  mostrarResultados(resultados);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
