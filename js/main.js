@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const app = document.getElementById("app");
-
-  // Crear el <main>
-  const main = document.createElement("main");
+  const main = document.querySelector("main");
 
   // Sección Hero
   const hero = document.createElement("section");
@@ -44,31 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
   main.appendChild(aside);
   main.appendChild(sectionArticulos);
 
-  // Agregar el main dentro del #app
-  app.appendChild(main);
-
-  /*------------------  MENU DESPLEGABLE ------- para versión móvil ---------- */
-  const botonMenu = document.getElementById('toggleMenu');
+  /*------------------  MENÚ DESPLEGABLE (versión móvil) ------------------*/
+  const botonMenu = document.getElementById("toggleMenu");
   let menu = null;
 
   botonMenu.addEventListener("click", () => {
     if (!menu) {
       const header = document.querySelector("header");
       menu = document.createElement("div");
-      menu.className = "menu cerrado"; // Inicia cerrado
-      const lista = document.getElementById('lista');
+      menu.className = "menu cerrado";
+      const lista = document.getElementById("lista");
       const newList = lista.cloneNode(true);
       newList.id = "newList";
       menu.appendChild(newList);
       header.appendChild(menu);
     }
-
-    // Alternar clases con toggle()
     menu.classList.toggle("cerrado");
     menu.classList.toggle("abierto");
   });
 
-  /* Código para cerrar menú en resize */
   window.addEventListener("resize", () => {
     if (window.innerWidth > 870 && menu && menu.classList.contains("abierto")) {
       menu.classList.remove("abierto");
@@ -76,22 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /*------------------  FILTROS DESPLEGABLE ----------------- */
+  /*------------------  FILTROS DESPLEGABLE ------------------*/
   const filtros = document.querySelector(".filtros");
 
   pestana.addEventListener("click", () => {
-    // ✅ Alternar clases con toggle()
     filtros.classList.toggle("cerrado");
     filtros.classList.toggle("abierto");
   });
 
-  /*------------------  BOTÓN AÑADIR ----------------- */
+  /*------------------  BOTÓN AÑADIR ------------------*/
   let contadorAñadidos = 0;
   const carrito = document.getElementById("carrito");
-  let contadorCarrito = document.createElement("span");
+  const contadorCarrito = document.createElement("span");
   contadorCarrito.id = "contador-carrito";
   contadorCarrito.textContent = "0";
-  contadorCarrito.style.display = "none"; // Ocultar inicialmente
+  contadorCarrito.style.display = "none";
   carrito.appendChild(contadorCarrito);
 
   sectionArticulos.addEventListener("click", (event) => {
@@ -110,9 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (contadorAñadidos > 0) {
         contadorCarrito.textContent = contadorAñadidos;
-        contadorCarrito.style.display = "block"; // Mostrar contador
+        contadorCarrito.style.display = "block";
       } else {
-        contadorCarrito.style.display = "none"; // Ocultar si es 0
+        contadorCarrito.style.display = "none";
       }
     }
   });
